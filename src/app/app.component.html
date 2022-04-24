@@ -1,0 +1,43 @@
+<h1 class="center">Liste de pokemons</h1>
+
+<!--Ici on va demander à un utilisateur de taper un chiffre et de lui retourner le pokemon correspondant et afficher le pokemon concerné. En revanche et contrairement à l'exercice précédent, on va lui afficher le résultat quand il aura appuyé sur la touche entrée. Angular permet de filtrer les éléments du clavier via une syntaxe spécifique. C'est complètement différents du natif. On va pouvoir en effet utiliser un pseudo évènement pour la touche entrée, qui s'appelle keyup.enter. Et pour intercepter ce peudo-évènement, juste en ajoutant .enter à keyup.  -->
+<!-- 
+
+<input 
+    #input
+    (keyup.enter)="selectedPokemon(input.value)"
+    type="number"
+>
+-->
+
+<!--Ici, on va utiliser la directive *ngIf pour afficher le message si l'utilisateur a trouvé un pokémon, et un autre message dans le cas contraire. On va utiliser pokemonSelected qui a l'avantage d'être typé de type pokémon ou undefined. Si on a un pokemon, la condition sera true et le message sera affiché, si le pokemon n'est pas trouvé, on aura undefined, donc false, et rien ne sera affiché -->
+<!-- 
+<p *ngIf="pokemonSelected"> 
+    Vous avez sélectionné le pokemon : {{ pokemonSelected?.name }}
+</p>
+<p *ngIf="!pokemonSelected"> 
+    Aucun pokémon n'a été trouvé.
+</p>
+
+-->
+
+<!--Directive ngFor. PokemonList doit obligatoirement être un tableau qui vient de la classe du composant-->
+<div class="container">
+    <div class="row">
+        <div *ngFor="let pokemon of pokemonList" class="col m4 s6">
+            <div class="card horizontal">
+                <div class="card-image">
+                    <img [src]="pokemon.picture">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <p>{{ pokemon.name}}</p>
+                        <p><small> {{ pokemon.created }} </small></p>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>
+
+
